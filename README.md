@@ -136,3 +136,31 @@ void fFormDtCorrente(char *pszDtHr, int format) {
      
 }/* fFormDtCorrente() */
 ```
+
+### Executa um comando no UNIX/DOS e armazena e retorna o resultado
+
+```
+void ExecutaComando(char *strComando, char *strResultado)
+{		  
+  FILE *fp;
+  char strAuxResultado[1000];  
+   
+  fp = popen(strComando, "r");
+  if (fp == NULL) {
+    printf("\nErro ao executar o comando %s\n", strComando);
+    pclose(fp);    
+    exit;
+  }
+  
+  if (fgets(strAuxResultado, sizeof(strAuxResultado), fp) == NULL) {
+  	printf("\nErro ao executar o comando %s\n", strComando);
+  	pclose(fp);    
+    exit;
+  }  
+  
+  RightTrim(strAuxResultado);
+  strcpy(strResultado, strAuxResultado);
+  
+  pclose(fp);    
+}
+```
