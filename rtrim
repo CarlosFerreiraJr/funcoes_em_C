@@ -1,5 +1,0 @@
-void rtrim(char *string)
-{
-    int i;
-    for(i=strlen(string)-1;string[i]==' '&&i>=0;string[i--]='\0');
-}
