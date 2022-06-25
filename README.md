@@ -1,11 +1,87 @@
-### Retirar espaço de variáveis string
+### Retirar espaço a direita de variáveis string
 
 ```
-void rtrim(char *string)
-{
-    int i;
-    for(i=strlen(string)-1;string[i]==' '&&i>=0;string[i--]='\0');
-}
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void RightTrim( char *STR )
+  {
+    int cont;
+
+    cont = strlen( STR );
+    cont--;
+
+    while( (!isalnum(STR[cont])) && (cont>-1) )
+      {
+        cont--;
+      }
+
+    STR[cont+1] = '\0';
+  } /* RightTrim */
+```
+
+### Retirar espaço a esquerda de variáveis string
+
+```
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void LeftTrim( char *STR )
+  {
+    char *NEW;
+    int cont, i, j;
+
+    cont = strlen( STR );
+    NEW = (char*) malloc ((cont+1)*sizeof(char));
+    i=0;
+
+    while ( (i<cont) && (STR[i]==' ') )
+      i++;
+
+    j=0;
+
+    for (; i<cont; i++ )
+      {
+        NEW[j] = STR[i];
+        j++;
+      }
+
+    NEW[j] = '\0';
+    strcpy( STR, NEW );
+    free( NEW );
+  } /* LeftTrim */
+```
+
+### Retirar espaço entre as palavras de variáveis string
+
+```
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void MiddleTrim( char *STR )
+  {
+    char *NEW;
+    int cont, i, j;
+
+    cont = strlen( STR );
+    NEW = (char*) malloc ((cont+1)*sizeof(char));
+    j = 0;
+
+    for ( i=0; i<cont; i++ )
+      {
+        NEW[j] = STR[i];
+        while ( (i<cont) && (STR[i]==' ') && (STR[i+1]==' ') )
+          i++;
+        j++;
+      }
+
+    NEW[j] = '\0';
+    strcpy( STR, NEW );
+    free( NEW );
+  } /* MiddleTrim */
 ```
 
 ### Pega a data corrente e colocando no formato informado
