@@ -137,7 +137,7 @@ void fFormDtCorrente(char *pszDtHr, int format) {
 }/* fFormDtCorrente() */
 ```
 
-### Executa um comando no UNIX/DOS e armazena e retorna o resultado
+### Executa um comando no UNIX/DOS e retorna o resultado
 
 ```
 void ExecutaComando(char *strComando, char *strResultado)
