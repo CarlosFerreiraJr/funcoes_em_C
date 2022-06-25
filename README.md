@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 void RightTrim( char *STR )
   {
@@ -27,6 +28,7 @@ void RightTrim( char *STR )
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 void LeftTrim( char *STR )
   {
@@ -60,6 +62,7 @@ void LeftTrim( char *STR )
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 void MiddleTrim( char *STR )
   {
