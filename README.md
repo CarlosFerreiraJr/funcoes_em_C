@@ -1,63 +1,3 @@
-### Leitura de arquivo texto
-```
-#include <stdio.h>
-#include <String.h>
-#include <FileAccess.h>
-#include <iostream.h>
-#include <locale.h>
-
-int main(int argc, char *argv[]) 
-{
-    char          diretorio[100];
-    char          nome_arquivo[200];    
-    FILE          * p_arquivo_txt = NULL;      
-    char          str_registros[1000];
-    time_t        now;
-    struct tm     ts;
-    char          buf[20];
-    char          sdtProcessa[20];
-
-    // Obtêm a data corrente
-    time(&now);     	
-    // Formata a data e hora
-    ts = *localtime(&now);        
-    strftime(buf, sizeof(buf), "%d/%m/%Y %H:%M:%S", &ts);    	 
-    strcpy(sdtProcessa,buf);	     	 
-    printf("Data/Hora do Início do Processo: %s\n", sdtProcessa);
-
-    printf("Iniciando a leitura do arquivo...\n");
-    
-    /* Configura o nome do arquivo que será lido */    
-    strcpy(diretorio, "/opt/arbor/t3cafrj/teste/");      
-    sprintf(nome_arquivo, "%s%s", diretorio, "dados.txt"); 
-    
-    /* Abre o arquivo para leitura */
-	  p_arquivo_txt = fopen(nome_arquivo, "r");
-    if(! p_arquivo_txt)    	
-		  printf("Erro na abertura do arquivo [%s]\n", nome_arquivo);
-    
-    /* Loop de leitura do arquivo */
-    while(!feof(p_arquivo_txt))
-    {      	
-     	fgets(str_registros, sizeof(str_registros), p_arquivo_txt);
-      printf("%s", str_registros);
-    }	
-    fclose(p_arquivo_txt);
-    
-    printf("Fim da leitura do arquivo...\n");
-     
-     // Obtêm a data corrente
-    time(&now);     	
-    // Formata a data e hora
-    ts = *localtime(&now);        
-    strftime(buf, sizeof(buf), "%d/%m/%Y %H:%M:%S", &ts);    	 
-    strcpy(sdtProcessa,buf);	     	 
-    printf("Data/Hora do Fim do Processo: %s\n", sdtProcessa);
-
-	return 0;
-}
-```
-
 ### Retirar espaço a direita de variáveis string
 
 ```
@@ -150,22 +90,15 @@ void MiddleTrim( char *STR )
 ### Pega a data corrente e colocando no formato informado
 
 ```
-/**************************************************************************
-** Descricao       : Pega a data corrente e colocando no formato informado
-** Parametros      : char *pszDtHr - ponteiro para o array onde sera retornada a data formatada
-**                   int format - formato desejado
-** Outras Observ.  : formato:
-**                    YMDHMS        1          yyyymmddhh24mmss
-**                    YMD_HMS       2          yyyymmdd_hh24mmss
-**                    YMD           3          yyyymmdd
-**************************************************************************/
-void fFormDtCorrente(char *pszDtHr, int format) {
+void fFormDtCorrente(char *pszDtHr, int format) 
+{
     time_t timer;
     struct tm *tblock;
 
     timer = time(NULL);
     tblock = localtime(&timer);
-    switch (format ) {
+    switch (format ) 
+    {
        case YMDHMS:
            sprintf (pszDtHr, "%04d%02d%02d%02d%02d%02d", 
                     tblock->tm_year+1900,
@@ -192,8 +125,44 @@ void fFormDtCorrente(char *pszDtHr, int format) {
                     tblock->tm_mon+1, 
                     tblock->tm_mday);
            break;
-     }
-     
+
+       case YM:
+           sprintf (pszDtHr, "%04d%02d", 
+                    tblock->tm_year+1900, 
+                    tblock->tm_mon+1);
+           break;
+
+       case DM:
+           sprintf (pszDtHr, "%02d%02d", 
+                    tblock->tm_mday, 
+                    tblock->tm_mon+1);
+           break;
+
+       case DMYHMScs:
+           sprintf (pszDtHr, "%02d/%02d/%d %02d:%02d:%02d",
+                    tblock->tm_mday, 
+                    tblock->tm_mon+1, 
+                    tblock->tm_year+1900,
+                    tblock->tm_hour, 
+                    tblock->tm_min, 
+                    tblock->tm_sec);
+           break;
+
+       case DMYcs:
+           sprintf (pszDtHr, "%02d/%02d/%d",
+                    tblock->tm_mday, 
+                    tblock->tm_mon+1, 
+                    tblock->tm_year+1900);
+           break;
+
+       case HMScs:
+           sprintf (pszDtHr, "%02d:%02d:%02d",
+                    tblock->tm_hour, 
+                    tblock->tm_min, 
+                    tblock->tm_sec);
+           break;
+           
+    }/*switch*/
 }/* fFormDtCorrente() */
 ```
 
