@@ -3,11 +3,7 @@
 **
 ** Nome Arquivo   : difdata.cpp
 **
-** Sintaxe        : difdata <menor_data> <maior_data> <format_retorno>
-**                  formato do campo menor_data = DD/MM/YYYY HH24:MI:SS
-**                  formato do campo maior_data = DD/MM/YYYY HH24:MI:SS
-**                  formato do campo formato_retorno: 0 para retorno da diferença em dias
-**                                                    1 para retorno da diferença em horas
+** Sintaxe        : difdata 
 **
 ** Descricao      : Programa que retorna difrança entre duas datas
 *****************************************************************************************************/
