@@ -5,7 +5,7 @@
 **
 ** Sintaxe        : difdata 
 **
-** Descricao      : Programa que retorna difrança entre duas datas
+** Descricao      : Programa que retorna diferença entre duas datas
 ***************************************************************************/
 
 #include <stdio.h>
